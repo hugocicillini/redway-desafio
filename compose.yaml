@@ -1,0 +1,21 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgres://postgres.uuetvrnjpguuvqbgqsur:qFdIconjjV7XvTBT@aws-0-sa-east-1.pooler.supabase.com:5432/postgres
+    depends_on:
+      - database
+
+  database:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres.uuetvrnjpguuvqbgqsur
+      POSTGRES_PASSWORD: qFdIconjjV7XvTBT
+      POSTGRES_DB: postgres
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:
